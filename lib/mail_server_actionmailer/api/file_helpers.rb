@@ -1,4 +1,6 @@
-module MailServer
+require 'faraday'
+
+module MailServerActionmailer
   module Api
     module FileHelpers
       def type_file(name)

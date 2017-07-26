@@ -1,10 +1,12 @@
-# frozen_string_literal: true
+require 'faraday'
+require 'mail_server_actionmailer/api/authenticate_keys'
+
 module MailServerActionmailer
   module Api
     class Requests
-      BASEURI = 'http://51.255.91.111'
+      BASEURI = 'http://51.255.91.111'.freeze
 
-      VERSION_PART = '/api/v1/'
+      VERSION_PART = '/api/v1/'.freeze
 
       class << self
         def request(http_method, url, params = {})

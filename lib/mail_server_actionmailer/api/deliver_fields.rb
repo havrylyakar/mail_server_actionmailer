@@ -1,3 +1,5 @@
+require 'mail_server_actionmailer/api/file_helpers'
+
 # frozen_string_literal: true
 module MailServerActionmailer
   module Api

@@ -1,23 +1,28 @@
+require 'mail_server_actionmailer/api/requests'
+require 'mail_server_actionmailer/api/file_helpers'
+
 module MailServerActionmailer
   module Api
     class ServerClient
       include FileHelpers
 
-      delegate :request, to: '::MailServerActionmailer::Api::Requests'
+      def request(*args)
+        ::MailServerActionmailer::Api::Requests.request(*args)
+      end
 
       def send_mail(mail)
         request('post', 'mails', mail).body
       end
 
-      def statistic(date = Time.zone.now)
+      def statistic(date = Time.now.getlocal)
         request('get', 'mails', date: date).body
       end
 
-      def unsubscribe_statistic(date = Time.zone.now)
+      def unsubscribe_statistic(date = Time.now.getlocal)
         request('get', 'events/unsubscribe', events_params(date)).body
       end
 
-      def resubscribe_statistic(date = Time.zone.now)
+      def resubscribe_statistic(date = Time.now.getlocal)
         request('get', 'events/resubscribe', events_params(date)).body
       end
 
@@ -25,7 +30,7 @@ module MailServerActionmailer
         request('post', 'users/logo', file_hash(:logo, file_name)).body
       end
 
-      def events(date = Time.zone.now)
+      def events(date = Time.now.getlocal)
         request('get', 'events', events_index_params(date)).body
       end
 

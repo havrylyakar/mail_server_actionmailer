@@ -1,3 +1,7 @@
+require 'mail_server_actionmailer/api/server_config'
+require 'mail_server_actionmailer/api/server_client'
+require 'mail_server_actionmailer/api/deliver_fields'
+
 module MailServerActionmailer
   module Api
     class DeliveryMethod

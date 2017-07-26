@@ -1,3 +1,6 @@
+require 'mail_server_actionmailer/api/server_config'
+require 'ostruct'
+
 module MailServerActionmailer
   module Api
     class AuthenticateKeys
@@ -18,8 +21,6 @@ module MailServerActionmailer
       def configure_defaults!
         config.public_key = MailServerActionmailer::Api::ServerConfig.api_public_key
         config.secret_key = MailServerActionmailer::Api::ServerConfig.api_secret_key
-        # config.public_key = Rails.application.secrets.mail_server_api_public_key
-        # config.secret_key = Rails.application.secrets.mail_server_api_secret_key
         config.digest = OpenSSL::Digest::SHA256.new
       end
 
@@ -43,7 +44,7 @@ module MailServerActionmailer
       end
 
       def hmac
-        OpenSSL::HMAC.new(config.secret_key, config.digest)
+        OpenSSL::HMAC.new(String(config.secret_key), config.digest)
       end
 
       def sorted_keys
