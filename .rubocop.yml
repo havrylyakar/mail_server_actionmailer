@@ -1,0 +1,31 @@
+AllCops:
+  #RunRailsCops: true
+  Exclude:
+    # You could specify set of files or dirs while you want to be ignored by rubocop
+    - 'vendor/**/*'
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'bin/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    - 'Rakefile'
+    - 'Guardfile'
+    - 'config.ru'
+    - 'lib/tasks/app_import_static_templates.rake'
+Rails:
+  Enabled: true
+Documentation: # Disabling documentation cop
+  Enabled: false
+Metrics/LineLength:
+  Max: 240
+Lint/UnneededDisable:
+  Enabled: false
+ClassLength:
+  Max: 250
+FrozenStringLiteralComment:
+  Enabled: false
+Lint/UnifiedInteger:
+ Enabled: false
+OutputSafety:
+  Enabled: false
