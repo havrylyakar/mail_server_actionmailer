@@ -31,12 +31,13 @@ module MailServerActionmailer
       end
 
       def options_fields
-        %w(footer)
+        %w(footer statistic)
       end
 
       def default_options
         {
-          footer: 'true'
+          footer: 'true',
+          statistic: 'true'
         }.with_indifferent_access
       end
 
