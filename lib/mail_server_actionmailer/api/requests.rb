@@ -36,7 +36,7 @@ module MailServerActionmailer
       end
 
       def conn
-        @conn ||= ::Faraday.new(url: "#{BASEURI}#{VERSION_PART}") do |conn|
+        @conn ||= ::Faraday.new(url: "#{BASEURI}#{VERSION_PART}", request: request_options ) do |conn|
           conn.request :multipart
           conn.request :url_encoded
           conn.adapter :net_http
@@ -47,6 +47,13 @@ module MailServerActionmailer
 
       def authenticate_params
         AuthenticateKeys.call("#{VERSION_PART}#{url}", params)
+      end
+
+      def request_options
+        {
+          timeout: 200,
+          open_timeout: 100
+        }
       end
     end
   end
