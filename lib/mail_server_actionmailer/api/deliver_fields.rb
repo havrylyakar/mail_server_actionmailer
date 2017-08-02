@@ -55,7 +55,7 @@ module MailServerActionmailer
       end
 
       def html_field
-        mail.html_part&.body&.decoded
+        mail.html_part&.body&.decoded || mail&.body&.decoded
       end
 
       def name_from_field
